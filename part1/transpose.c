@@ -34,8 +34,18 @@ void naiveMatrixTranspose(double *matrix, double *transpose, int size) {
 
 // Cache-Aware tiled Matrix Transpose
 void tiledMatrixTranspose(double *matrix, double *transpose, int size, int blockSize) {
+for (int i = 0; i < size; i+=blockSize ){
+        for (int j = 0; j < size; j+=blockSize) {
+             for (int i1 = i; i1 < i+blockSize && i1<size; i1++) {
+                    for (int j1 = j; j1 < j+blockSize && j1<size; j1++) {
+                        transpose[i1 * size + j1] = matrix[j1 * size + i1];
+                    }
+                }       
+        }
+    }
     // Students need to implement this function
 }
+//00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 
 
 // Prefetch Matrix Transpose
